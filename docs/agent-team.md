@@ -7,6 +7,7 @@ The **Orchestrator** delegates work to three specialists — **Planner**,
 **Coder**, and **Designer** — following an explicit phase-based execution model.
 
 ## Agents
+Definintions for the below agents can be found in .github/agents
 
 | Agent | Model | Role |
 |-------|-------|------|
