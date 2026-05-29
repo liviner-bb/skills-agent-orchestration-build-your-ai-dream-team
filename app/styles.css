@@ -1,0 +1,241 @@
+/* ============================================================
+   Project Pulse — Dashboard Stylesheet
+   A polished project management dashboard with card-based layout,
+   status badges, and priority indicators.
+   ============================================================ */
+
+/* --- Reset & Base --- */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 16px;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
+  line-height: 1.6;
+  color: #1a1a2e;
+  background-color: #f0f2f5;
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+}
+
+/* --- Dashboard Container --- */
+.dashboard {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem 1.5rem;
+}
+
+.dashboard-header {
+  margin-bottom: 2rem;
+}
+
+.dashboard-header h1 {
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: #1a1a2e;
+  letter-spacing: -0.02em;
+}
+
+.dashboard-header p {
+  font-size: 1rem;
+  color: #555b6e;
+  margin-top: 0.25rem;
+}
+
+/* --- Card Grid Layout --- */
+.project-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 1.5rem;
+}
+
+/* --- Project Card --- */
+.project-card {
+  background-color: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08), 0 1px 3px rgba(0, 0, 0, 0.04);
+  padding: 1.5rem;
+  margin: 0;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  position: relative;
+}
+
+.project-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.12), 0 2px 6px rgba(0, 0, 0, 0.06);
+}
+
+.project-card:focus-within {
+  outline: 3px solid #4a6cf7;
+  outline-offset: 2px;
+  box-shadow: 0 6px 20px rgba(74, 108, 247, 0.15);
+}
+
+.project-card h2 {
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: #1a1a2e;
+  line-height: 1.4;
+}
+
+.project-card p {
+  font-size: 0.9rem;
+  color: #555b6e;
+  line-height: 1.5;
+}
+
+.project-card-meta {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+  margin-top: auto;
+  padding-top: 0.75rem;
+  border-top: 1px solid #e8eaed;
+}
+
+/* --- Status Badges --- */
+.status-badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.25rem 0.75rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  border-radius: 100px;
+  white-space: nowrap;
+}
+
+/* On Track — Green
+   Background: #d4edda, Text: #155724 → contrast ≈ 7.1:1 */
+.status-badge.status-on-track {
+  background-color: #d4edda;
+  color: #155724;
+}
+
+/* At Risk — Amber/Orange
+   Background: #fff3cd, Text: #664d03 → contrast ≈ 7.5:1 */
+.status-badge.status-at-risk {
+  background-color: #fff3cd;
+  color: #664d03;
+}
+
+/* Complete — Blue
+   Background: #d1ecf1, Text: #0c5460 → contrast ≈ 6.4:1 */
+.status-badge.status-complete {
+  background-color: #d1ecf1;
+  color: #0c5460;
+}
+
+/* --- Priority Indicators --- */
+.priority-indicator {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  padding: 0.25rem 0.6rem;
+  border-radius: 6px;
+}
+
+/* Dot before label */
+.priority-indicator::before {
+  content: "";
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+}
+
+/* High — bold red tone
+   Background: #fde8e8, Text: #9b1c1c → contrast ≈ 6.8:1 */
+.priority-indicator.priority-high {
+  background-color: #fde8e8;
+  color: #9b1c1c;
+}
+
+.priority-indicator.priority-high::before {
+  background-color: #e02424;
+}
+
+/* Medium — amber tone
+   Background: #fef3c7, Text: #92400e → contrast ≈ 5.1:1 */
+.priority-indicator.priority-medium {
+  background-color: #fef3c7;
+  color: #92400e;
+}
+
+.priority-indicator.priority-medium::before {
+  background-color: #d97706;
+}
+
+/* Low — muted teal
+   Background: #e6fffa, Text: #234e52 → contrast ≈ 8.1:1 */
+.priority-indicator.priority-low {
+  background-color: #e6fffa;
+  color: #234e52;
+}
+
+.priority-indicator.priority-low::before {
+  background-color: #38b2ac;
+}
+
+/* --- Responsive Behavior --- */
+@media (max-width: 600px) {
+  .dashboard {
+    padding: 1rem;
+  }
+
+  .project-grid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  .dashboard-header h1 {
+    font-size: 1.4rem;
+  }
+
+  .project-card {
+    padding: 1.25rem;
+    border-radius: 10px;
+  }
+}
+
+/* --- Utility & Accessibility --- */
+@media (prefers-reduced-motion: reduce) {
+  .project-card {
+    transition: none;
+  }
+}
+
+/* Visible focus for keyboard navigation */
+a:focus-visible,
+button:focus-visible {
+  outline: 3px solid #4a6cf7;
+  outline-offset: 2px;
+}
+
+/* Ensure long text wraps gracefully */
+.project-card,
+.project-card * {
+  overflow-wrap: break-word;
+  word-break: break-word;
+}

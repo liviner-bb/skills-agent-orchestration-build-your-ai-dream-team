@@ -1,0 +1,39 @@
+{
+  "projects": [
+    {
+      "name": "Mona's OctoBoard",
+      "owner": "Mona",
+      "status": "On Track",
+      "recentActivity": "Refined dashboard filters",
+      "priority": "High"
+    },
+    {
+      "name": "Mona's Merge Quest",
+      "owner": "Riley",
+      "status": "At Risk",
+      "recentActivity": "Investigated failing checks",
+      "priority": "High"
+    },
+    {
+      "name": "Mona's Release Radar",
+      "owner": "Sam",
+      "status": "Complete",
+      "recentActivity": "Published launch notes",
+      "priority": "Medium"
+    },
+    {
+      "name": "Mona's Issue Garden",
+      "owner": "Avery",
+      "status": "On Track",
+      "recentActivity": "Triaged new bug reports",
+      "priority": "Low"
+    },
+    {
+      "name": "Mona's Workflow Workshop",
+      "owner": "Jordan",
+      "status": "At Risk",
+      "recentActivity": "Reviewed automation delays",
+      "priority": "Medium"
+    }
+  ]
+}

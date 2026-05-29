@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Project Pulse</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <main class="dashboard">
+    <header class="dashboard-header">
+      <h1>Project Pulse</h1>
+      <p>Track project health, recent activity, and priorities in one focused dashboard.</p>
+    </header>
+
+    <section class="project-grid" aria-label="Project list"></section>
+  </main>
+
+  <script>
+    const projectGrid = document.querySelector(".project-grid");
+
+    function createSlug(value) {
+      return String(value).trim().toLowerCase().replace(/\s+/g, "-");
+    }
+
+    function createProjectCard(project) {
+      const card = document.createElement("article");
+      card.className = "project-card";
+
+      const title = document.createElement("h2");
+      title.textContent = project.name;
+
+      const owner = document.createElement("p");
+      owner.textContent = `Owner: ${project.owner}`;
+
+      const recentActivity = document.createElement("p");
+      recentActivity.textContent = `Recent: ${project.recentActivity}`;
+
+      const meta = document.createElement("div");
+      meta.className = "project-card-meta";
+
+      const status = document.createElement("span");
+      status.className = `status-badge status-${createSlug(project.status)}`;
+      status.setAttribute("aria-label", "Project status");
+      status.textContent = project.status;
+
+      const priority = document.createElement("span");
+      priority.className = `priority-indicator priority-${createSlug(project.priority)}`;
+      priority.setAttribute("aria-label", "Priority level");
+      priority.textContent = project.priority;
+
+      meta.append(status, priority);
+      card.append(title, owner, recentActivity, meta);
+
+      return card;
+    }
+
+    function showMessage(message) {
+      projectGrid.textContent = "";
+
+      const messageElement = document.createElement("p");
+      messageElement.textContent = message;
+      projectGrid.append(messageElement);
+    }
+
+    async function renderProjects() {
+      try {
+        const response = await fetch("project-data.json");
+
+        if (!response.ok) {
+          throw new Error(`Project data request failed with status ${response.status}`);
+        }
+
+        const data = await response.json();
+        const projects = Array.isArray(data.projects) ? data.projects : [];
+
+        if (projects.length === 0) {
+          showMessage("No projects found.");
+          return;
+        }
+
+        projectGrid.textContent = "";
+        projects.forEach((project) => {
+          projectGrid.append(createProjectCard(project));
+        });
+      } catch (error) {
+        showMessage("We could not load projects right now. Please try again later.");
+      }
+    }
+
+    renderProjects();
+  </script>
+</body>
+</html>
